@@ -1,0 +1,28 @@
+{
+  "name": "hubot-assign",
+  "version": "0.0.1",
+  "description": "Hubot script for assigning task to team member.",
+  "main": "script/hubot-assign.coffee",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sota1235/hubot-assign.git"
+  },
+  "keywords": [
+    "hubot",
+    "assign",
+    "todo",
+    "task"
+  ],
+  "author": "sota1235",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sota1235/hubot-assign/issues"
+  },
+  "homepage": "https://github.com/sota1235/hubot-assign#readme"
+}
