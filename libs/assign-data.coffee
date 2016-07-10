@@ -23,8 +23,8 @@ module.exports = class AssignData
   # その部屋のタスクナンバーをインクリメントする
   increment = (room) ->
     data = @robot.brain.get ASSIGN or {}
-    num = data[room]['increment'] or 1
-    data[room]['increment'] = num + 1
+    num = _.get data, "#{room}.increment" or 1
+    _.set data, "#{room}.increment", num + 1
     num + 1
 
   ##
@@ -36,16 +36,16 @@ module.exports = class AssignData
     roomData = data[room] or {}
     taskList = roomData[userName] or {}
     taskList[userName] =
-      increment() : task
+      "#{increment()}" : task
     roomData[userName] = taskList
     data[room] = roomData
     setData data
 
   listTask: (room, userName) ->
-    getData()[room][userName]
+    _.get getData(), "#{room}.#{userName}", null
 
   listAllTask: (room) ->
-    getData()[room]
+    _.get getData(), room, null
 
   completeTask: (room, userName, number) ->
     data = getData()
@@ -54,7 +54,7 @@ module.exports = class AssignData
 
   assignTask: (room, userName, number, target) ->
     data = getData()
-    task = _.get data, [room, userName, number].join ','
+    task = _.get data, "#{room}.#{userName}.#{number}"
     delete data[room][userName][number]
-    data[room][target][number] = task
+    _.set data, "#{room}.#{target}.#{number}", task
     setData data
