@@ -11,21 +11,53 @@
 # Author:
 #   @sota1235
 
+AssignData = require '../libs/assign-data'
+
 module.exports = (robot) ->
+  assignData = new AssignData robot
+
   robot.respond /assign create (.+) (.+)/i, (msg) ->
-    msg.send 'hubot assign create'
+    userName = msg.match[1]
+    task     = msg.match[2]
+    room     = msg.message.room
+
+    assignData.addTask room, userName, task
+
+    msg.send "#{userName}にタスク：#{task}を追加しました"
 
   robot.respond /assign list/i, (msg) ->
-    msg.send 'hubot assign list'
+    room = msg.message.room
+    user = msg.message.user.name
+
+    tasks = assignData.listTask room, user
+
+    msg.send JSON.stringify tasks
 
   robot.respond /assign list all/i, (msg) ->
-    msg.send 'hubot assign list all'
+    room = msg.message.room
+
+    tasks = assignData.listAllTask room
+
+    msg.send JSON.stringify tasks
 
   robot.respond /assign (.+) done/i, (msg) ->
+    room    = msg.message.room
+    user    = msg.message.user.name
+    taskNum = mgs.match[1]
+
+    assignData.completeTask room, user, taskNum
+
     msg.send 'hubot assign done'
 
   robot.respond /assign (.+) (.+)/i, (msg) ->
+    room    = msg.message.room
+    user    = msg.message.user.name
+    taskNum = msg.message.match[1]
+    target  = msg.message.match[2]
+
+    assignData.assignTask room, user, taskNum, target
+
     msg.send 'hubot assign'
 
-  robot.respond /assign __rest/, (msg) ->
+  robot.respond /assign __reset/, (msg) ->
     msg.send 'hubot assign data reset'
