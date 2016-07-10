@@ -56,6 +56,8 @@ module.exports = class AssignData
   assignTask: (room, userName, number, target) ->
     data = getData()
     task = _.get data, "#{room}.#{userName}.#{number}"
+    if task is null
+      return
     delete data[room][userName][number]
     _.set data, "#{room}.#{target}.#{number}", task
     setData data
