@@ -61,3 +61,6 @@ module.exports = (robot) ->
 
   robot.respond /assign __reset/, (msg) ->
     msg.send 'hubot assign data reset'
+
+  robot.respond /assign debug/, (msg) ->
+    msg.send JSON.stringify assignData.debug()

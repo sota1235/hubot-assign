@@ -61,3 +61,6 @@ module.exports = class AssignData
     delete data[room][userName][number]
     _.set data, "#{room}.#{target}.#{number}", task
     setData data
+
+  debug: () ->
+    getData()
