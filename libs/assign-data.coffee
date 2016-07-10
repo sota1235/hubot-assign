@@ -7,18 +7,19 @@ _ = require 'lodash'
 
 module.exports = class AssignData
   ASSIGN = 'ASSIGN'
+  ROBOT  = null
 
-  constructor: (@robot) ->
-    return
+  constructor: (robot) ->
+    ROBOT = robot
 
   ##
   # private method
   ##
   setData = (data) ->
-    @robot.brain.set ASSIGN, data
+    ROBOT.brain.set ASSIGN, data
 
   getData = ->
-    return @robot.brain.get ASSIGN or {}
+    ROBOT.brain.get ASSIGN or {}
 
   # その部屋のタスクナンバーをインクリメントする
   increment = (room) ->
