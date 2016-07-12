@@ -23,7 +23,7 @@ module.exports = class AssignData
 
   # その部屋のタスクナンバーをインクリメントする
   increment = (room) ->
-    data = @robot.brain.get ASSIGN or {}
+    data = ROBOT.brain.get ASSIGN or {}
     num = _.get data, "#{room}.increment" or 1
     _.set data, "#{room}.increment", num + 1
     num + 1
