@@ -52,8 +52,8 @@ module.exports = (robot) ->
   robot.respond /assign (.+) (.+)/i, (msg) ->
     room    = msg.message.room
     user    = msg.message.user.name
-    taskNum = msg.message.match[1]
-    target  = msg.message.match[2]
+    taskNum = msg.match[1]
+    target  = msg.match[2]
 
     if taskNum is 'create'
       return
