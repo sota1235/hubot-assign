@@ -55,6 +55,9 @@ module.exports = (robot) ->
     taskNum = msg.message.match[1]
     target  = msg.message.match[2]
 
+    if taskNum is 'create'
+      return
+
     assignData.assignTask room, user, taskNum, target
 
     msg.send 'hubot assign'
