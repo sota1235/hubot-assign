@@ -51,14 +51,11 @@ module.exports = (robot) ->
 
     msg.send 'hubot assign done'
 
-  robot.respond /assign (.+) (.+)/i, (msg) ->
+  robot.respond /assign ([0-9]+) (.+)/i, (msg) ->
     room    = msg.message.room
     user    = msg.message.user.name
     taskNum = msg.match[1]
     target  = msg.match[2]
-
-    if /^create/i.test taskNum
-      return
 
     assignData.assignTask room, user, taskNum, target
 
