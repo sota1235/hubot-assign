@@ -24,7 +24,7 @@ module.exports = class AssignData
   # その部屋のタスクナンバーをインクリメントする
   increment = (room) ->
     data = getData()
-    num = _.get data, "#{room}.increment" or 1
+    num = _.get(data, "#{room}.increment") or 1
     _.set data, "#{room}.increment", num + 1
     num + 1
 
