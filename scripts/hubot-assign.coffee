@@ -31,6 +31,10 @@ module.exports = (robot) ->
 
     tasks = assignData.listTask room, user
 
+    if not tasks
+      msg.send "#{user}のタスクはありません"
+      return
+
     msg.send "#{user}のタスク一覧です"
     msg.send tasks
 
