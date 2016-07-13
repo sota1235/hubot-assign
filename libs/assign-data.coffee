@@ -21,6 +21,11 @@ module.exports = class AssignData
   getData = ->
     ROBOT.brain.get(ASSIGN) or {}
 
+  # タスクナンバーを取得する
+  getTaskNum = (room) ->
+    data = getData()
+    _.get(data, "#{room}.increment") or 1
+
   # その部屋のタスクナンバーをインクリメントする
   increment = (room) ->
     data = getData()
@@ -36,7 +41,7 @@ module.exports = class AssignData
 
     roomData = _.get data, room, {}
     taskList = roomData[userName] or {}
-    taskList[userName] =
+    taskList =
       "#{increment(room)}" : task
     roomData[userName] = taskList
     data[room] = roomData
