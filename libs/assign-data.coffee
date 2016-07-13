@@ -69,11 +69,16 @@ module.exports = class AssignData
 
   assignTask: (room, userName, number, target) ->
     data = getData()
-    task = _.get data, "#{room}.#{userName}.#{number}"
+    task = _.get data, "#{room}.tasks.#{number}"
+
     if task is null
-      return
-    delete data[room]['tasks'][number]
-    _.set data, "#{room}.#{target}.#{number}", task
+      throw new Error '指定された番号のタスクはありません'
+
+    if task.assign is target
+      throw new Error "タスクNo.#{number}はすでに#{target}にassignされています"
+
+    data[room]['tasks'][number]['assign'] = target
+
     setData data
 
   debug: () ->

@@ -60,9 +60,13 @@ module.exports = (robot) ->
     if target is 'done'
       return
 
-    assignData.assignTask room, user, taskNum, target
+    try
+      assignData.assignTask room, user, taskNum, target
+    catch error
+      msg.send error.message
+      return
 
-    msg.send 'hubot assign'
+    msg.send "タスクNo.#{taskNum}が#{target}にassignされました"
 
   robot.respond /assign __reset/i, (msg) ->
     assignData.reset()
