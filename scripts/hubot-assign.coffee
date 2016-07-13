@@ -31,7 +31,8 @@ module.exports = (robot) ->
 
     tasks = assignData.listTask room, user
 
-    msg.send JSON.stringify tasks
+    msg.send "#{userName}のタスク一覧です"
+    msg.send tasks
 
   robot.respond /assign list all/i, (msg) ->
     room = msg.message.room

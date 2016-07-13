@@ -47,12 +47,11 @@ module.exports = class AssignData
   listTask: (room, userName) ->
     roomTasks = _.get getData(), "#{room}.tasks", null
     userTasks = []
-    for k, v of tasks
+    for k, v of roomTasks
       if v.assign is userName
         userTasks.push "#{k}: #{v.description}"
 
-    msg.send "#{userName}のタスク一覧です"
-    msg.send userTasks.join "\n"
+    userTasks.join "\n"
 
   listAllTask: (room) ->
     _.get getData(), room, null
