@@ -64,3 +64,6 @@ module.exports = class AssignData
 
   debug: () ->
     getData()
+
+  reset: () ->
+    setData {}

@@ -63,6 +63,7 @@ module.exports = (robot) ->
     msg.send 'hubot assign'
 
   robot.respond /assign __reset/i, (msg) ->
+    assignData.reset()
     msg.send 'hubot assign data reset'
 
   robot.respond /assign debug/i, (msg) ->
