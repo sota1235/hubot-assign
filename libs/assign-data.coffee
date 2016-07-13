@@ -37,7 +37,7 @@ module.exports = class AssignData
     roomData = _.get data, room, {}
     taskList = roomData[userName] or {}
     taskList[userName] =
-      "#{increment()}" : task
+      "#{increment(room)}" : task
     roomData[userName] = taskList
     data[room] = roomData
     setData data
