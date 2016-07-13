@@ -54,7 +54,7 @@ module.exports = class AssignData
     userTasks.join "\n"
 
   listAllTask: (room) ->
-    tasks _.get getData(), "#{room}.tasks", null
+    tasks = _.get getData(), "#{room}.tasks", null
     shapedTasks = []
 
     for k, v of tasks
