@@ -25,7 +25,7 @@ module.exports = (robot) ->
 
     msg.send "#{userName}にタスク：#{task}を追加しました"
 
-  robot.respond /assign list/i, (msg) ->
+  robot.respond /assign list$/i, (msg) ->
     room = msg.message.room
     user = msg.message.user.name
 
