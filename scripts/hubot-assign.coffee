@@ -45,7 +45,7 @@ module.exports = (robot) ->
   robot.respond /assign (.+) done/i, (msg) ->
     room    = msg.message.room
     user    = msg.message.user.name
-    taskNum = mgs.match[1]
+    taskNum = msg.match[1]
 
     assignData.completeTask room, user, taskNum
 
