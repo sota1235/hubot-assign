@@ -49,7 +49,7 @@ module.exports = (robot) ->
 
     assignData.completeTask room, user, taskNum
 
-    msg.send 'hubot assign done'
+    msg.send "タスク No.#{taskNum}を完了しました"
 
   robot.respond /assign ([0-9]+) (.+)/i, (msg) ->
     room    = msg.message.room

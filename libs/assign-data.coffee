@@ -64,7 +64,7 @@ module.exports = class AssignData
 
   completeTask: (room, userName, number) ->
     data = getData()
-    delete data[room][userName][number]
+    delete data[room]['tasks'][number]
     setData data
 
   assignTask: (room, userName, number, target) ->
