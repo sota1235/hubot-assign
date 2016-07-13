@@ -1,6 +1,6 @@
 {
   "name": "hubot-assign",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Hubot script for assigning task to team member.",
   "main": "scripts/hubot-assign.coffee",
   "directories": {
