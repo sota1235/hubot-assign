@@ -21,30 +21,27 @@ module.exports = class AssignData
   getData = ->
     ROBOT.brain.get(ASSIGN) or {}
 
-  # タスクナンバーを取得する
-  getTaskNum = (room) ->
-    data = getData()
-    _.get(data, "#{room}.increment") or 1
-
-  # その部屋のタスクナンバーをインクリメントする
-  increment = (room) ->
-    data = getData()
-    num = _.get(data, "#{room}.increment") or 1
-    _.set data, "#{room}.increment", num + 1
-    num + 1
-
   ##
   # API
   ##
   addTask: (room, userName, task) ->
     data = getData()
 
-    roomData = _.get data, room, {}
-    taskList = roomData[userName] or {}
-    taskList =
-      "#{increment(room)}" : task
-    roomData[userName] = taskList
-    data[room] = roomData
+    taksObj =
+      description: task
+      assign: userName
+
+    # Create object when data doesn't have room object
+    if not _.has data, room
+      data[room] =
+        tasks: {}
+        increment: 1
+
+    taskNumber = _.get data, "#{room}.increment", 1
+
+    data[room]['tasks'][taskNumber] = taksObj
+    data[room]['increment'] = taskNumber + 1
+
     setData data
 
   listTask: (room, userName) ->
