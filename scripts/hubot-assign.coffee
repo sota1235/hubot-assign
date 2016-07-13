@@ -57,6 +57,9 @@ module.exports = (robot) ->
     taskNum = msg.match[1]
     target  = msg.match[2]
 
+    if target is 'done'
+      return
+
     assignData.assignTask room, user, taskNum, target
 
     msg.send 'hubot assign'
